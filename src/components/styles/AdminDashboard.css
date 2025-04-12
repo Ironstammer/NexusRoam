@@ -1,0 +1,135 @@
+
+.admin-dashboard {
+  padding: 2rem;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.admin-title {
+  font-size: 1.75rem;
+}
+
+.admin-logout {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-logout:hover {
+  background-color: #d32f2f;
+}
+
+.admin-tabs {
+  display: flex;
+  border-bottom: 2px solid #eee;
+  margin-bottom: 2rem;
+}
+
+.admin-tab {
+  padding: 1rem 1.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.admin-tab.active {
+  border-bottom-color: #33C3F0;
+  color: #33C3F0;
+}
+
+.admin-content {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.data-table th {
+  font-weight: 600;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.action-button {
+  background-color: #33C3F0;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.25rem 0.75rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.action-button:hover {
+  background-color: #1eaedb;
+}
+
+.action-button.delete {
+  background-color: #f44336;
+}
+
+.action-button.delete:hover {
+  background-color: #d32f2f;
+}
+
+.admin-add-button {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.admin-add-button:hover {
+  background-color: #3d8b40;
+}
+
+@media (max-width: 768px) {
+  .admin-tabs {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .data-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
