@@ -3,20 +3,42 @@ import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import '../components/styles/AuthForm.css';
+import { useToast } from "@/hooks/use-toast";
+import { Button } from '@/components/ui/button';
 
 const UserAuth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
+
+  const validateForm = () => {
+    if (!isLogin && password !== confirmPassword) {
+      toast({
+        title: "Password Mismatch",
+        description: "Passwords do not match. Please try again.",
+        variant: "destructive",
+      });
+      return false;
+    }
+    return true;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
     setSuccess('');
+
+    if (!validateForm()) {
+      return;
+    }
+    
     setLoading(true);
     
     // Simulate form submission
@@ -33,7 +55,9 @@ const UserAuth = () => {
       // Reset form
       setEmail('');
       setPassword('');
+      setConfirmPassword('');
       setName('');
+      setPhoneNumber('');
     }, 1000);
   };
 
@@ -71,18 +95,33 @@ const UserAuth = () => {
           
           <form onSubmit={handleSubmit}>
             {!isLogin && (
-              <div className="form-group">
-                <label className="form-label" htmlFor="name">Full Name</label>
-                <input
-                  id="name"
-                  className="form-input"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="John Doe"
-                  required={!isLogin}
-                />
-              </div>
+              <>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="name">Full Name</label>
+                  <input
+                    id="name"
+                    className="form-input"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    placeholder="John Doe"
+                    required={!isLogin}
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <label className="form-label" htmlFor="phone-number">Phone Number</label>
+                  <input
+                    id="phone-number"
+                    className="form-input"
+                    type="tel"
+                    value={phoneNumber}
+                    onChange={(e) => setPhoneNumber(e.target.value)}
+                    placeholder="123-456-7890"
+                    required={!isLogin}
+                  />
+                </div>
+              </>
             )}
             
             <div className="form-group">
@@ -110,6 +149,21 @@ const UserAuth = () => {
                 required
               />
             </div>
+            
+            {!isLogin && (
+              <div className="form-group">
+                <label className="form-label" htmlFor="confirm-password">Confirm Password</label>
+                <input
+                  id="confirm-password"
+                  className="form-input"
+                  type="password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  placeholder="••••••••"
+                  required={!isLogin}
+                />
+              </div>
+            )}
             
             <button 
               type="submit" 

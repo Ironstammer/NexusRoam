@@ -7,6 +7,7 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import UserAuth from "./pages/UserAuth";
 import NotFound from "./pages/NotFound";
+import { Toaster } from "./components/ui/toaster";
 import "./App.css";
 
 const queryClient = new QueryClient();
@@ -22,6 +23,7 @@ const App = () => (
         <Route path="/auth" element={<UserAuth />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   </QueryClientProvider>
 );
